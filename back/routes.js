@@ -36,6 +36,7 @@ const POST_DETAIL = "/detail";
 const POST_SEARCH = "/search";
 const POST_NUMBER = "/number"
 const POST_LIKE = "/like";
+const REDIS_TEST = "/redis"
 
 // Comments
 const COMMENTS = "/comments";
@@ -97,6 +98,7 @@ const routes = {
     post_detail : POST_DETAIL,
     post_search : POST_SEARCH,
     post_like: POST_LIKE,
+    redis : REDIS_TEST,
 
     comments : COMMENTS,
     comment : COMMENT,

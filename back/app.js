@@ -18,9 +18,20 @@ import emailRouter from "./routers/emailRouter"
 import routes from "./routes"
 import path from "path"
 
+
 const app = express()
 dotenv.config();
 
+//redis
+
+var redis = require('redis');
+// var JSON = require('JSON');
+let client = redis.createClient(6379,'127.0.0.1');
+
+app.use(function(req,res,next){
+    req.cache = client;
+    next();
+})
 
 app.use(cors());
 app.use(cookieParser());

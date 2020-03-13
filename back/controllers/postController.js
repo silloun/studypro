@@ -5,6 +5,7 @@ import {study_comments, common_comments} from "../models"
 import {users} from "../models"
 import multer from "multer"
 import path from "path"
+import JSON from "JSON"
 
 export const number_post = async function(req, res) {
     try {
@@ -195,9 +196,13 @@ export const delete_post = async function(req, res) {
 
 export const list_post = async function(req, res) {
     try{
+        console.log("?????????");
+        
         const {board, type, study_id, offset} = req.query;
+        
         let result;
         if(type === "common"){
+            console.log(board, type, offset);
             common_post_model.findAll({ 
                 offset: Number(offset || 0),
                 limit: 10,
@@ -214,9 +219,8 @@ export const list_post = async function(req, res) {
                 
                 return post
 
-            }).then((posts)=>{   
-                
-                res.send(posts)
+            }).then(async (posts)=>{
+                res.send(posts);
             })
         }else if(type === "study"){
             study_post_model.findAll({ 
@@ -276,3 +280,18 @@ export const file_upload = multer({
         }
     })
 });
+
+
+export const redis_test = function(req,res){
+    let key = "key1"
+    req.cache.get(key,function(err,data){
+        if(err){
+              console.log(err);
+              res.send("error "+err);
+              return;
+        }
+        console.log(data);
+        // let value = JSON.parse(data);
+        res.send(data);
+   });
+}

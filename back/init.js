@@ -7,13 +7,13 @@ import {connect, server} from "./socket"
 const PORT = 8000;
 const SOCKET_PORT = 8210
 
-const option = {
-    key: fs.readFileSync('./keys/private.key'),
-    cert: fs.readFileSync('./keys/certificate.crt'),
-    ca: fs.readFileSync('./keys/ca_bundle.crt'),
-}
+// const option = {
+//     key: fs.readFileSync('./keys/private.key'),
+//     cert: fs.readFileSync('./keys/certificate.crt'),
+//     ca: fs.readFileSync('./keys/ca_bundle.crt'),
+// }
 
-const https_app = require('https').createServer(option, app)
+const https_app = require('http').createServer(app)
 const handleListening = () => {
     console.log(`✅  Listening on : https://localhost:${PORT} ✌`);
     // connect()
